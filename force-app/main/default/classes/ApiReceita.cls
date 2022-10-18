@@ -1,6 +1,7 @@
 public with sharing class ApiReceita {
     private static final String endpoint = 'https://www.receitaws.com.br/v1/cnpj/';
 
+    //Commit feature branch
     @AuraEnabled
     public static TOReceitaAPI callReceitaAPI(String CNPJ){
         Http http = new Http();
