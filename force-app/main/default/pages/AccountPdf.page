@@ -1,0 +1,9 @@
+<apex:page id="AccountPDF" renderAs="pdf" docType="html-5.0" showHeader="false" sidebar="false" applyBodyTag="false" applyHtmlTag="false" controller="AccountPDFController">
+<html lang="en">
+    <head>
+            <meta charset="UTF-8"/>
+            <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+            <title>PDF</title>
+    </head>
+</html>
+</apex:page>

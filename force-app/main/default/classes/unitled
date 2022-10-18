@@ -1,0 +1,23 @@
+ApexTransactionController.saveAccount();
+/************************************************************************************************* */
+Datetime cronTriggerTimer = System.now().addMinutes(2);
+
+//Semana mensal e ultimo ano que é opcional
+//Vai disparar no mesmo dia no mesmo horario a classe do apex
+
+String cronTriggerStr = '0 ' + cronTriggerTimer.time().minute() + ' ' + cronTriggerTimer.time().hour() + ' * * ?';
+
+//Coloco o nome do job e instacio a classe
+System.Schedule('Activities Job', cronTriggerStr, new AccountActivitiesSchedule());
+/************************************************************************************************* */
+
+CloseOpenOpportunities closeOppBatch = new CloseOpenOpportunities() ;
+
+
+Database.executeBatch(closeOppBatch, 1);
+
+
+/*
+Outra forma onde 5 é twmpo em minutos que vai demorar para executar a pçartir do momento que disparo está ação e 
+200 numero de itens por execução: System.ScheduleBatch(closeOppBatch, 'Scheduled Batch', 5, 200); 
+*/

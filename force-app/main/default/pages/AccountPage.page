@@ -1,0 +1,65 @@
+<apex:page id="AccountPage" docType="html-5.0" showHeader="true" sidebar="false" standardController="Account" extensions="AccountControllerExtension">
+<apex:form id="accountForm">
+    <apex:actionFunction name="addContact" action="{!addContact}" reRender="contactInformation" immediate="true"/>
+    <apex:actionFunction name="deleteContact" action="{!deleteContact}" reRender="contactInformation" immediate="true">
+        <apex:param name="index" value=""/>
+    </apex:actionFunction>
+    <apex:pageBlock mode="edit">
+        <apex:pageBlockButtons location="top">
+            <apex:commandButton value="Save" action="{!saveAccount}"/>
+        </apex:pageBlockButtons>
+        <apex:pageBlockSection title="Account Information" columns="2">
+            <apex:inputField value="{!account.Name}"/>
+            <apex:inputField value="{!account.Site}"/>
+            <apex:inputField value="{!account.Phone}"/>
+
+        </apex:pageBlockSection>
+        <apex:pageBlockSection title="Contact Information" columns="1" id="contactInformation">
+            <apex:pageBlockSectionItem >
+                <button type="button" onclick="addContact();">
+                    Add Contact
+                </button>
+            </apex:pageBlockSectionItem>
+            <apex:variable var="index" value="{!0}"/>
+            <apex:pageBlockSectionItem >
+                <apex:pageBlockTable value="{!listContact}" var="contact">
+                    <apex:column >
+                        <apex:facet name="header">
+                          
+                        </apex:facet>
+                        <a href="_" onclick="deleteContact({!index}); return false;">Delete</a>
+                        <apex:variable var="index" value="{!index + 1}"/>
+                         
+                   
+                    </apex:column>
+                    <apex:column >
+                        <apex:facet name="header">
+                            First Name
+                        </apex:facet>
+                         
+                    <apex:inputField value="{!contact.FirstName}"/>
+                    </apex:column>
+                    <apex:column >
+                        <apex:facet name="header">
+                            Last Name
+                        </apex:facet>
+                         
+                    <apex:inputField value="{!contact.LastName}"/>
+                    </apex:column>
+                    <apex:column >
+                        <apex:facet name="header">
+                           Email
+                        </apex:facet>
+                         
+                    <apex:inputField value="{!contact.Email}"/>
+                    </apex:column>
+                   
+
+                </apex:pageBlockTable>
+            </apex:pageBlockSectionItem>
+
+        </apex:pageBlockSection>
+    </apex:pageBlock>
+
+</apex:form>
+</apex:page>
